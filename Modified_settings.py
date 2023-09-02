@@ -1,0 +1,1 @@
+globals = ["2P", 7, "Hard", 6]                  
