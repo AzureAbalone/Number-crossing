@@ -17,50 +17,36 @@ class PLAY():
                 print(f'* Score:\nP1:{P1_score}\nP2:{P2_score}')
             case 3:
                 global P3_score
-                if win[0] == None:
-                    print(f"P1:{P1_score}")
-                elif win[0] == True:
-                    print("P1: Win")
-                elif win[0] == False:
-                    print("P1: Lose")
-                if win[1] == None:
-                    print(f"P2:{P2_score}")
-                elif win[1] == True:
-                    print("P2: Win")
-                elif win[1] == False:
-                    print("P2: Lose")
-                if win[2] == None:
-                    print(f"P3:{P3_score}")
-                elif win[2] == True:
-                    print("P3: Win")
-                elif win[2] == False:
-                    print("P3: Lose")
+                match win[0]:
+                    case None: print(f"P1:{P1_score}")
+                    case True: print("P1: Win")
+                    case False: print("P1: Lose")
+                match win[1]:
+                    case None: print(f"P2:{P2_score}")
+                    case True: print("P2: Win")
+                    case False: print("P2: Lose")
+                match win[2]:
+                    case None: print(f"P3:{P3_score}")
+                    case True: print("P3: Win")
+                    case False: print("P3: Lose")
             case 4:
                 global P4_score
-                if win[0] == None:
-                    print(f"P1:{P1_score}")
-                elif win[0] == True:
-                    print("P1: Win")
-                elif win[0] == False:
-                    print("P1: Lose")
-                if win[1] == None:
-                    print(f"P2:{P2_score}")
-                elif win[1] == True:
-                    print("P2: Win")
-                elif win[1] == False:
-                    print("P2: Lose")
-                if win[2] == None:
-                    print(f"P3:{P3_score}")
-                elif win[2] == True:
-                    print("P3: Win")
-                elif win[2] == False:
-                    print("P3: Lose")
-                if win[3] == None:
-                    print(f"P4:{P4_score}")
-                elif win[3] == True:
-                    print("P4: Win")
-                elif win[3] == False:
-                    print("P4: Lose")
+                match win[0]:
+                    case None: print(f"P1:{P1_score}")
+                    case True: print("P1: Win")
+                    case False: print("P1: Lose")
+                match win[1]:
+                    case None: print(f"P2:{P2_score}")
+                    case True: print("P2: Win")
+                    case False: print("P2: Lose")
+                match win[2]:
+                    case None: print(f"P3:{P3_score}")
+                    case True: print("P3: Win")
+                    case False: print("P3: Lose")
+                match win[3]:
+                    case None: print(f"P4:{P4_score}")
+                    case True: print("P4: Win")
+                    case False: print("P4: Lose")
         for i in table:
             for j in i:
                 #- Format the table if negative numbers exist
