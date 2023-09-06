@@ -99,8 +99,11 @@ class PLAY():
                 continue
             #- Rolling phase
             P_dice = randint(1, 6)
-            print("Rolling...")
-            sleep(1)
+            print("Rolling", end='')
+            for _ in range(3):
+                sleep(0.5)
+                print(".", end='')
+            print()
             print(f'- Player {i} dice: {P_dice}')
             check = True
             #! Check if player's input is valid 
