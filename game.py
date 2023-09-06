@@ -85,7 +85,19 @@ class PLAY():
                 continue
             #- Rolling phase
             P_dice = randint(1, 6)
-            print("Rolling", end='')
+            print("R", end='')
+            sleep(0.1)
+            print("o", end='')
+            sleep(0.1)
+            print("l", end='')
+            sleep(0.1)
+            print("l", end='')
+            sleep(0.1)
+            print("i", end='')
+            sleep(0.1)
+            print("n", end='')
+            sleep(0.1)
+            print("g", end='')
             for _ in range(3):
                 sleep(0.5)
                 print(".", end='')
