@@ -85,14 +85,12 @@ class PLAY():
                 continue
             #- Rolling phase
             P_dice = randint(1, 6)
-            for i in "Rolling...":
-                if i != ".":
+            for j in "Rolling...":
+                if j != ".":
                     sleep(0.15)
-                elif i == "R":
-                    sleep(0)
                 else:
                     sleep(0.5)
-                print(i, end='')
+                print(j, end='')
             print()
             print(f'- Player {i} dice: {P_dice}')
             check = True
