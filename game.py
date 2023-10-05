@@ -55,7 +55,7 @@ class PLAY():
         print('----'*size)
 
     def Px_process(numP, mode):
-        global table, P4_score, check_neg_6, win_condition, win, check_pos_6, P1_score, P2_score, P3_score, count, size, check_insane_pos_6, check_insane_neg_6
+        global table, P4_score, check_neg_6, win_condition, win, check_pos_6, P1_score, P2_score, P3_score, count, size, check_insane_pos_6, check_insane_neg_6 #- For unbound error
         for i in range(1, numP+1): #- Player turn
             match numP:
                 case 3:
@@ -83,6 +83,8 @@ class PLAY():
                         break
             if win[i-1] != None: #- Check if current player win or lose
                 continue
+            if None not in win:
+                return
             #- Rolling phase
             P_dice = randint(1, 6)
             for j in "Rolling...":
@@ -120,16 +122,16 @@ class PLAY():
                 table[P_pos[0]-2][P_pos[1]-1] += P_dice  # - Up
                 table[P_pos[0]][P_pos[1]-1] += P_dice  # - Down
             # - Processing (corner)
-            elif P_pos == [1, 1]:  # - Up left
+            elif P_pos == [1, 1]:  # - Down right
                 table[P_pos[0]-1][P_pos[1]] += P_dice  # - Right
                 table[P_pos[0]][P_pos[1]-1] += P_dice  # - Down
-            elif P_pos == [1, size]:  # - Up right
+            elif P_pos == [1, size]:  # - Down left
                 table[P_pos[0]-1][P_pos[1]-2] += P_dice  # - Left
                 table[P_pos[0]][P_pos[1]-1] += P_dice  # - Down
-            elif P_pos == [size, 1]:  # - Down left
+            elif P_pos == [size, 1]:  # - Up right
                 table[P_pos[0]-1][P_pos[1]] += P_dice  # - Right
                 table[P_pos[0]-2][P_pos[1]-1] += P_dice  # - Up
-            elif P_pos == [size, size]:  # - Down right
+            elif P_pos == [size, size]:  # - Up left
                 table[P_pos[0]-1][P_pos[1]-2] += P_dice  # - Left
                 table[P_pos[0]-2][P_pos[1]-1] += P_dice  # - Up
             # - Process (edge)
@@ -229,7 +231,7 @@ class PLAY():
                                             if temp_value > 6 or temp_value < -6:
                                                 table[idx][temp_idx] = 0
                                     PLAY.visualxP(numP)
-                                    return
+                                    continue
                                 if max(value) == 6:
                                     match i:
                                         case 1:
@@ -259,34 +261,34 @@ class PLAY():
                                         print()
                                         print('Player 1 win !!!')
                                         win[0] = True
-                                        return
+                                        continue
                                     elif P1_score < 0:
                                         print()
                                         print('Player 1 lose !!!')
                                         win[0] = False
-                                        return
+                                        continue
                                 case 2:
                                     if P2_score >= win_condition:
                                         print()
                                         print('Player 2 win !!!')
                                         win[1] = True
-                                        return
+                                        continue
                                     elif P2_score < 0:
                                         print()
                                         print('Player 2 lose !!!')
                                         win[1] = False
-                                        return
+                                        continue
                                 case 3:
                                     if P3_score >= win_condition:
                                         print()
                                         print('Player 3 win !!!')
                                         win[2] = True
-                                        return
+                                        continue
                                     elif P3_score < 0:
                                         print()
                                         print('Player 3 lose !!!')
                                         win[2] = False
-                                        return
+                                        continue
                         case 4:
                             for idx, value in enumerate(table):
                                 if max(value) > 6 or min(value) < -6:
@@ -298,7 +300,7 @@ class PLAY():
                                             if temp_value > 6 or temp_value < -6:
                                                 table[idx][temp_idx] = 0
                                     PLAY.visualxP(numP)
-                                    return
+                                    continue
                                 if max(value) == 6:
                                     match i:
                                         case 1:
@@ -332,45 +334,45 @@ class PLAY():
                                         print()
                                         print('Player 1 win !!!')
                                         win[0] = True
-                                        return
+                                        continue
                                     elif P1_score < 0:
                                         print()
                                         print('Player 1 lose !!!')
                                         win[0] = False
-                                        return
+                                        continue
                                 case 2:
                                     if P2_score >= win_condition:
                                         print()
                                         print('Player 2 win !!!')
                                         win[1] = True
-                                        return
+                                        continue
                                     elif P2_score < 0:
                                         print()
                                         print('Player 2 lose !!!')
                                         win[1] = False
-                                        return
+                                        continue
                                 case 3:
                                     if P3_score >= win_condition:
                                         print()
                                         print('Player 3 win !!!')
                                         win[2] = True
-                                        return
+                                        continue
                                     elif P3_score < 0:
                                         print()
                                         print('Player 3 lose !!!')
                                         win[2] = False
-                                        return
+                                        continue
                                 case 4:
                                     if P4_score >= win_condition:
                                         print()
                                         print('Player 4 win !!!')
                                         win[3] = True
-                                        return
+                                        continue
                                     elif P4_score < 0:
                                         print()
                                         print('Player 4 lose !!!')
                                         win[3] = False
-                                        return
+                                        continue
                 case "Normal":
                     match numP:
                         case 2:
@@ -446,7 +448,7 @@ class PLAY():
                                             if temp_value > 6 or temp_value < -6:
                                                 table[idx][temp_idx] = 0
                                     PLAY.visualxP(numP)
-                                    return
+                                    continue
                                 if max(value) == 6:
                                     match i:
                                         case 1:
@@ -478,34 +480,34 @@ class PLAY():
                                         print()
                                         print('Player 1 win !!!')
                                         win[0] = True
-                                        return
+                                        continue
                                     elif P1_score < 0:
                                         print()
                                         print('Player 1 lose !!!')
                                         win[0] = False
-                                        return
+                                        continue
                                 case 2:
                                     if P2_score >= win_condition:
                                         print()
                                         print('Player 2 win !!!')
                                         win[1] = True
-                                        return
+                                        continue
                                     elif P2_score < 0:
                                         print()
                                         print('Player 2 lose !!!')
                                         win[1] = False
-                                        return
+                                        continue
                                 case 3:
                                     if P3_score >= win_condition:
                                         print()
                                         print('Player 3 win !!!')
                                         win[2] = True
-                                        return
+                                        continue
                                     elif P3_score < 0:
                                         print()
                                         print('Player 3 lose !!!')
                                         win[2] = False
-                                        return
+                                        continue
                         case 4:
                             for idx, value in enumerate(table):
                                 if max(value) > 6 or min(value) < -6:
@@ -517,7 +519,7 @@ class PLAY():
                                             if temp_value > 6 or temp_value < -6:
                                                 table[idx][temp_idx] = 0
                                     PLAY.visualxP(numP)
-                                    return
+                                    continue
                                 if max(value) == 6:
                                     match i:
                                         case 1:
@@ -553,45 +555,45 @@ class PLAY():
                                         print()
                                         print('Player 1 win !!!')
                                         win[0] = True
-                                        return
+                                        continue
                                     elif P1_score < 0:
                                         print()
                                         print('Player 1 lose !!!')
                                         win[0] = False
-                                        return
+                                        continue
                                 case 2:
                                     if P2_score >= win_condition:
                                         print()
                                         print('Player 2 win !!!')
                                         win[1] = True
-                                        return
+                                        continue
                                     elif P2_score < 0:
                                         print()
                                         print('Player 2 lose !!!')
                                         win[1] = False
-                                        return
+                                        continue
                                 case 3:
                                     if P3_score >= win_condition:
                                         print()
                                         print('Player 3 win !!!')
                                         win[2] = True
-                                        return
+                                        continue
                                     elif P3_score < 0:
                                         print()
                                         print('Player 3 lose !!!')
                                         win[2] = False
-                                        return
+                                        continue
                                 case 4:
                                     if P4_score >= win_condition:
                                         print()
                                         print('Player 4 win !!!')
                                         win[3] = True
-                                        return
+                                        continue
                                     elif P4_score < 0:
                                         print()
                                         print('Player 1 lose !!!')
                                         win[3] = False
-                                        return
+                                        continue
                 case "Hard":
                     match numP:
                         case 2:
@@ -670,7 +672,7 @@ class PLAY():
                                             if temp_value > 6 or temp_value < -6:
                                                 table[idx][temp_idx] = 0
                                     PLAY.visualxP(numP)
-                                    return
+                                    continue
                                 if max(value) == 6:
                                     for temp_idx, temp_value in enumerate(value):
                                         if temp_value == 6 and not (check_pos_6[idx][temp_idx]):
@@ -704,34 +706,34 @@ class PLAY():
                                         print()
                                         print('Player 1 win !!!')
                                         win[0] = True
-                                        return
+                                        continue
                                     elif P1_score < 0:
                                         print()
                                         print('Player 1 lose !!!')
                                         win[0] = False
-                                        return
+                                        continue
                                 case 2:
                                     if P2_score >= win_condition:
                                         print()
                                         print('Player 2 win !!!')
                                         win[1] = True
-                                        return
+                                        continue
                                     elif P2_score < 0:
                                         print()
                                         print('Player 2 lose !!!')
                                         win[1] = False
-                                        return
+                                        continue
                                 case 3:
                                     if P3_score >= win_condition:
                                         print()
                                         print('Player 3 win !!!')
                                         win[2] = True
-                                        return
+                                        continue
                                     elif P3_score < 0:
                                         print()
                                         print('Player 3 lose !!!')
                                         win[2] = False
-                                        return
+                                        continue
                         case 4:
                             for idx, value in enumerate(table):
                                 if max(value) > 6 or min(value) < -6:
@@ -743,7 +745,7 @@ class PLAY():
                                             if temp_value > 6 or temp_value < -6:
                                                 table[idx][temp_idx] = 0
                                     PLAY.visualxP(numP)
-                                    return
+                                    continue
                                 if max(value) == 6:
                                     for temp_idx, temp_value in enumerate(value):
                                         if temp_value == 6 and not (check_pos_6[idx][temp_idx]):
@@ -781,45 +783,45 @@ class PLAY():
                                         print()
                                         print('Player 1 win !!!')
                                         win[0] = True
-                                        return
+                                        continue
                                     elif P1_score < 0:
                                         print()
                                         print('Player 1 lose !!!')
                                         win[0] = False
-                                        return
+                                        continue
                                 case 2:
                                     if P2_score >= win_condition:
                                         print()
                                         print('Player 2 win !!!')
                                         win[1] = True
-                                        return
+                                        continue
                                     elif P2_score < 0:
                                         print()
                                         print('Player 2 lose !!!')
                                         win[1] = False
-                                        return
+                                        continue
                                 case 3:
                                     if P3_score >= win_condition:
                                         print()
                                         print('Player 3 win !!!')
                                         win[2] = True
-                                        return
+                                        continue
                                     elif P3_score < 0:
                                         print()
                                         print('Player 3 lose !!!')
                                         win[2] = False
-                                        return
+                                        continue
                                 case 4:
                                     if P4_score >= win_condition:
                                         print()
                                         print('Player 4 win !!!')
                                         win[3] = True
-                                        return
+                                        continue
                                     elif P4_score < 0:
                                         print()
                                         print('Player 4 lose !!!')
                                         win[3] = False
-                                        return
+                                        continue
                 case "Insane":
                     match numP:
                         case 2:
@@ -917,7 +919,7 @@ class PLAY():
                                             if temp_value > 6 or temp_value < -6:
                                                 table[idx][temp_idx] = 0
                                     PLAY.visualxP(numP)
-                                    return
+                                    continue
                                 if max(value) == 6:
                                     for temp_idx, temp_value in enumerate(value):
                                         if temp_value == 6 and check_insane_pos_6[idx][temp_idx] == 0:
@@ -935,7 +937,7 @@ class PLAY():
                                             win[i-1] = False
                                             check_insane_pos_6[idx][temp_idx] = 0
                                             PLAY.visualxP(numP)
-                                            return
+                                            continue
                                 if min(value) == -6:
                                     for temp_idx, temp_value in enumerate(value):
                                         if temp_value == -6 and check_insane_neg_6[idx][temp_idx] == 0:
@@ -953,7 +955,7 @@ class PLAY():
                                             win[i-1] = False
                                             check_insane_neg_6[idx][temp_idx] = 0
                                             PLAY.visualxP(numP)
-                                            return
+                                            continue
                             PLAY.visualxP(numP)
                             match i:
                                 case 1:
@@ -961,34 +963,34 @@ class PLAY():
                                         print()
                                         print('Player 1 win !!!')
                                         win[0] = True
-                                        return
+                                        continue
                                     elif P1_score < 0:
                                         print()
                                         print('Player 1 lose !!!')
                                         win[0] = False
-                                        return
+                                        continue
                                 case 2:
                                     if P2_score >= win_condition:
                                         print()
                                         print('Player 2 win !!!')
                                         win[1] = True
-                                        return
+                                        continue
                                     elif P2_score < 0:
                                         print()
                                         print('Player 2 lose !!!')
                                         win[1] = False
-                                        return
+                                        continue
                                 case 3:
                                     if P3_score >= win_condition:
                                         print()
                                         print('Player 3 win !!!')
                                         win[2] = True
-                                        return
+                                        continue
                                     elif P3_score < 0:
                                         print()
                                         print('Player 3 lose !!!')
                                         win[2] = False
-                                        return
+                                        continue
 
 
 while True:
@@ -1009,13 +1011,13 @@ while True:
             SETTING.run()
         case "PLAY":  # - Play the game
             # - Game func
-            mode = modset.globals[0]
-            size = modset.globals[1]
+            mode = modset.modified[0]
+            size = modset.modified[1]
             table = [[0]*size for _ in range(size)]
             check_pos_6 = [[False]*size for _ in range(size)]
             check_neg_6 = [[False]*size for _ in range(size)]
-            difficulty = modset.globals[2]
-            win_condition = modset.globals[3]
+            difficulty = modset.modified[2]
+            win_condition = modset.modified[3]
             check_insane_pos_6 = [[0]*size for _ in range(size)]
             check_insane_neg_6 = [[0]*size for _ in range(size)]
             P1_score, P2_score, P3_score, P4_score, count = 0, 0, 0, 0, 0
@@ -1027,16 +1029,12 @@ while True:
                     while count == 0:
                         match difficulty:
                             case "Easy":  # - Easy mode
-                                # - Processing
                                 PLAY.Px_process(2, "Easy")
                             case "Normal":  # - Normal mode
-                                # - Process
                                 PLAY.Px_process(2, "Normal")
                             case "Hard":  # - Hard mode
-                                # - Processing
                                 PLAY.Px_process(2, "Hard")
                             case "Insane":  # - Insane mode
-                                # - Process
                                 PLAY.Px_process(2, "Insane")
                 case "3P":
                     PLAY.visualxP(3)
@@ -1060,7 +1058,7 @@ while True:
                                 PLAY.Px_process(3, "Insane")
                             PLAY.Px_process(3, "Insane")
                 case "4P":
-                    PLAY.PLAY.visualxP(numP)
+                    PLAY.PLAY.visualxP(4)
                     match difficulty:
                         case "Easy":  # - Easy mode
                             while win.count(None) > 1:
@@ -1092,7 +1090,6 @@ while True:
                                     break
                                 if win[0] == None:
                                     # - P1 turn
-                                    # - Process
                                     PLAY.Px_process(1)
                                     # - Condition check
                                     check("Insane", 4, 1)
@@ -1110,7 +1107,6 @@ while True:
                                     break
                                 if win[1] == None:
                                     # - P2 turn
-                                    # - Process
                                     PLAY.Px_process(2)
                                     # - Condition check
                                     check("Insane", 4, 2)
@@ -1128,7 +1124,6 @@ while True:
                                     break
                                 if win[2] == None:
                                     # - P3 turn
-                                    # - Process
                                     PLAY.Px_process(3)
                                     # - Condition check
                                     check("Insane", 4, 3)
@@ -1146,7 +1141,6 @@ while True:
                                     break
                                 if win[3] == None:
                                     # - P4 turn
-                                    # - Process
                                     PLAY.Px_process(4)
                                     # - Condition check
                                     check("Insane", 4, 4)

@@ -69,8 +69,8 @@ def SETTING(): # - Setting menu
     from importlib import reload
     reload(modset)
     print()
-    print(f"- Player: {modset.globals[0]}")
-    print(f"- Size: {modset.globals[1]}")
-    print(f"- Difficulty: {modset.globals[2]}")
-    print(f"- Win condition: {modset.globals[3]}")
+    print(f"- Player: {modset.modified[0]}")
+    print(f"- Size: {modset.modified[1]}")
+    print(f"- Difficulty: {modset.modified[2]}")
+    print(f"- Win condition: {modset.modified[3]}")
     print("->RETURN<-")

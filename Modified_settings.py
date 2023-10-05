@@ -1,1 +1,1 @@
-globals = ["2P", 7, "Hard", 6]                  
+modified = ["3P", 7, "Normal", 6]                

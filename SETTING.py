@@ -1,10 +1,10 @@
-from Modified_settings import globals as gl
+from Modified_settings import modified as mod
 
 
-mode = gl[0]
-size = gl[1]
-difficulty = gl[2]
-win_condition = gl[3]
+mode = mod[0]
+size = mod[1]
+difficulty = mod[2]
+win_condition = mod[3]
 
 
 def player():  # - Modify number of players
@@ -38,19 +38,19 @@ def table_size():  # - Modify size of playground
 
 
 def win():  # - Modify the score a player needs to win
-    temp = input("- Select win condition (6 to 20): ")  # - Input the condition
+    temp = input("- Select win condition (3 to 20): ")  # - Input the condition
     check = True
     # ! If the input is wrong, input until it is right
     while check:
         try:  # * Check if the input is appropriate
-            while int(temp) not in range(6, 21):
+            while int(temp) not in range(3, 21):
                 print("INVALID WIN CONDITION!")
-                temp = input("- Select win condition (6 to 20): ")
+                temp = input("- Select win condition (3 to 20): ")
         except Exception:  # * Check if the input is numerical or not
             while not (temp.isnumeric()):
                 print("INVALID WIN CONDITION!")
-                temp = input("- Select win condition (6 to 20): ")
-        if int(temp) in range(6, 21):
+                temp = input("- Select win condition (3 to 20): ")
+        if int(temp) in range(3, 21):
             check = False
     return int(temp)
 
@@ -91,4 +91,4 @@ def run():  # - Run the modifier
                 case "Win":  # - Choose how many score need to win
                     win_condition = win()
             mod.write(
-                f'globals = ["{mode}", {size}, "{difficulty}", {win_condition}]               ')  # ! Warning: For modifying purposes only!
+                f'modified = ["{mode}", {size}, "{difficulty}", {win_condition}]               ')  # ! Warning: For modifying purposes only!
